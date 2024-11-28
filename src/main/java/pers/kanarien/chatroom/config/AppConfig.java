@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * @author zzh
  * @since 2024/11/27
@@ -17,6 +20,17 @@ public class AppConfig {
     @Value("${websocket.server.port}")
     private Integer websocketPort;
 
-    @Value("${file.uploadPath}")
-    private String uploadPath;
+    @Value("${file.baseUploadPath}")
+    private String baseUploadPath;
+
+    @Value("${server.port}")
+    private String serverPort;
+
+    public String getServerHost() {
+        try {
+            return InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

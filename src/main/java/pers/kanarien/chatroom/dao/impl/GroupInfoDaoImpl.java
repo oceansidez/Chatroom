@@ -1,17 +1,16 @@
 package pers.kanarien.chatroom.dao.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import pers.kanarien.chatroom.dao.GroupInfoDao;
 import pers.kanarien.chatroom.model.po.GroupInfo;
 import pers.kanarien.chatroom.model.po.UserInfo;
 import pers.kanarien.chatroom.util.Constant;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
-public class GroupInfoDaoImpl implements GroupInfoDao{
+public class GroupInfoDaoImpl implements GroupInfoDao {
 
     @Override
     public void loadGroupInfo() {

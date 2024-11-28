@@ -2,6 +2,7 @@ package pers.kanarien.chatroom.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import pers.kanarien.chatroom.common.Constants;
 import pers.kanarien.chatroom.config.AppConfig;
 import pers.kanarien.chatroom.model.vo.ResponseJson;
 import pers.kanarien.chatroom.service.FileUploadService;
@@ -18,8 +19,6 @@ import java.util.UUID;
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
 
-    private final static String SERVER_URL_PREFIX = "http://localhost:8282";
-    private final static String FILE_STORE_PATH = "WebSocketUploadFile";
     private final AppConfig appConfig;
 
     public FileUploadServiceImpl(AppConfig appConfig) {
@@ -38,7 +37,7 @@ public class FileUploadServiceImpl implements FileUploadService {
             suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
         }
         filename = filename + suffix;
-        String prefix = appConfig.getUploadPath() + File.separator + FILE_STORE_PATH;
+        String prefix = appConfig.getBaseUploadPath() + File.separator + Constants.WEBSOCKET_FILEPATH;
         // 文件夹不存在创建文件夹
         File fileDir = new File(prefix);
         if (!fileDir.exists()) {
@@ -55,7 +54,8 @@ public class FileUploadServiceImpl implements FileUploadService {
         return new ResponseJson().success()
                 .setData("originalFilename", originalFilename)
                 .setData("fileSize", fileSize)
-                .setData("fileUrl", SERVER_URL_PREFIX + File.separator + FILE_STORE_PATH + File.separator + filename);
+                .setData("fileUrl", "http://" + appConfig.getServerHost() + ":" + appConfig.getServerPort() +
+                        File.separator + Constants.WEBSOCKET_FILEPATH + File.separator + filename);
     }
 
     private String getRandomUUID() {

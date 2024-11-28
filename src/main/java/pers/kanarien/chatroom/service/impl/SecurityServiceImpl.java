@@ -1,29 +1,27 @@
 package pers.kanarien.chatroom.service.impl;
 
-import java.text.MessageFormat;
-
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import pers.kanarien.chatroom.dao.UserInfoDao;
 import pers.kanarien.chatroom.model.po.UserInfo;
 import pers.kanarien.chatroom.model.vo.ResponseJson;
 import pers.kanarien.chatroom.service.SecurityService;
 import pers.kanarien.chatroom.util.Constant;
 
+import javax.servlet.http.HttpSession;
+import java.text.MessageFormat;
+
 @Service
-public class SecurityServiceImpl implements SecurityService{
+public class SecurityServiceImpl implements SecurityService {
 
     @Autowired
     private UserInfoDao userInfoDao;
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(SecurityServiceImpl.class);
-    
-    
+
+
     @Override
     public ResponseJson login(String username, String password, HttpSession session) {
         UserInfo userInfo = userInfoDao.getByUsername(username);

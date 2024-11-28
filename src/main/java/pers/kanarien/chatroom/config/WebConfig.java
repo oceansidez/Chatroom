@@ -12,7 +12,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import pers.kanarien.chatroom.common.Constants;
 import pers.kanarien.chatroom.web.interceptor.UserAuthInteceptor;
 
 import java.io.File;
@@ -60,19 +60,18 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 视图解析器
+     * 视图解析器 此解析器只适合没配置thymeleaf临时展示页面用，使用Thymeleaf模板引擎时需要注释
      *
      * @return
      */
-    @Bean
-    public InternalResourceViewResolver viewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/webapp/views/");
-        resolver.setSuffix(".html");
-        resolver.setOrder(0);
-        return resolver;
-    }
-
+//    @Bean
+//    public InternalResourceViewResolver viewResolver() {
+//        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+//        resolver.setPrefix("/webapp/views/");
+//        resolver.setSuffix(".html");
+//        resolver.setOrder(0);
+//        return resolver;
+//    }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 配置静态文件映射
@@ -82,8 +81,8 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/webapp/static/");
         // websocket 文件上传映射
-        registry.addResourceHandler("/WebSocketUploadFile/**")
-                .addResourceLocations("file:" + appConfig.getUploadPath() + File.separator + "WebSocketUploadFile" + File.separator);
+        registry.addResourceHandler("/websocket/**")
+                .addResourceLocations("file:" + appConfig.getBaseUploadPath() + File.separator + Constants.WEBSOCKET_FILEPATH + File.separator);
     }
 
 

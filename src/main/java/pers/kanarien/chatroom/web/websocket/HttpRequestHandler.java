@@ -1,23 +1,18 @@
 package pers.kanarien.chatroom.web.websocket;
 
-import org.springframework.stereotype.Component;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.channel.ChannelHandler.Sharable;
-import io.netty.handler.codec.http.DefaultFullHttpResponse;
-import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.HttpResponseStatus;
-import io.netty.handler.codec.http.HttpUtil;
-import io.netty.handler.codec.http.HttpVersion;
+import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker;
 import io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory;
 import io.netty.util.CharsetUtil;
+import org.springframework.stereotype.Component;
 import pers.kanarien.chatroom.util.Constant;
 
 @Component
@@ -34,11 +29,12 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<Object> {
             handleHttpRequest(ctx, (FullHttpRequest) msg);
         } else if (msg instanceof WebSocketFrame) {
             ctx.fireChannelRead(((WebSocketFrame) msg).retain());
-        } 
+        }
     }
 
     /**
      * 描述：处理Http请求，主要是完成HTTP协议到Websocket协议的升级
+     *
      * @param ctx
      * @param req
      */
@@ -60,7 +56,7 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<Object> {
             handshaker.handshake(ctx.channel(), req);
         }
     }
-    
+
     private void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest req, DefaultFullHttpResponse res) {
         // 返回应答给客户端
         if (res.status().code() != 200) {

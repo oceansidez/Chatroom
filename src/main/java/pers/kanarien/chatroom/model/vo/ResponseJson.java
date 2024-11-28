@@ -1,10 +1,9 @@
 package pers.kanarien.chatroom.model.vo;
 
-import java.util.HashMap;
-
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.http.HttpStatus;
 
-import com.alibaba.fastjson.JSONObject;
+import java.util.HashMap;
 
 public class ResponseJson extends HashMap<String, Object> {
     private static final long serialVersionUID = 1L;
@@ -12,7 +11,7 @@ public class ResponseJson extends HashMap<String, Object> {
     private static final Integer SUCCESS_STATUS = 200;
     private static final Integer ERROR_STATUS = -1;
     private static final String SUCCESS_MSG = "一切正常";
-    
+
     public ResponseJson() {
         super();
     }
@@ -27,19 +26,19 @@ public class ResponseJson extends HashMap<String, Object> {
         setStatus(status.value());
         setMsg(status.getReasonPhrase());
     }
-    
+
     public ResponseJson success() {
         put("msg", SUCCESS_MSG);
         put("status", SUCCESS_STATUS);
         return this;
     }
-    
+
     public ResponseJson success(String msg) {
         put("msg", msg);
         put("status", SUCCESS_STATUS);
         return this;
     }
-    
+
     public ResponseJson error(String msg) {
         put("msg", msg);
         put("status", ERROR_STATUS);
@@ -56,7 +55,7 @@ public class ResponseJson extends HashMap<String, Object> {
         data.put(key, obj);
         return this;
     }
-    
+
     public ResponseJson setStatus(int status) {
         put("status", status);
         return this;
@@ -71,7 +70,7 @@ public class ResponseJson extends HashMap<String, Object> {
         put(key, val);
         return this;
     }
-    
+
     /**
      * 返回JSON字符串
      */
