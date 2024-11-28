@@ -5,17 +5,24 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author zzh
  * @since 2024/11/27
  */
 @Configuration
-@PropertySource("classpath:system.properties")
+// ignoreResourceNotFound = true 一定要加上，否则找不到会报错。加上之后会忽略找不到的配置文件，配置文件demo.properties放到和jar包同级下就可以了
+@PropertySource(value = {"classpath:system.properties", "file:./system.properties"}, ignoreResourceNotFound = true)
 @Getter
 public class AppConfig {
+
+    private final HttpServletRequest request;
+
+
+    public AppConfig(HttpServletRequest request) {
+        this.request = request;
+    }
 
     @Value("${websocket.server.port}")
     private Integer websocketPort;
@@ -27,10 +34,6 @@ public class AppConfig {
     private String serverPort;
 
     public String getServerHost() {
-        try {
-            return InetAddress.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        }
+        return request.getServerName();
     }
 }

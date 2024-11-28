@@ -61,15 +61,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- javaEE 7  todo 待删除-->
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-
         <!-- 通用工具包 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -98,7 +89,7 @@
 
     </dependencies>
     <build>
-        <finalName>WebSocket</finalName>
+        <finalName>chatroom</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
