@@ -6,6 +6,6 @@ spring:
   thymeleaf:
     prefix: classpath:/webapp/views/
     suffix: .html
-    mode: HTML5
+    mode: HTML
     encoding: UTF-8
     cache: false  # 开发环境下禁用缓存

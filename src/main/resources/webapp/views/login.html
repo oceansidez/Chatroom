@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>小小的聊天室——登录</title>
+    <title>我的聊天室——登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords"
@@ -22,7 +22,7 @@
 </head>
 <body class="background">
 <div class="header-w3l">
-    <h1>小小的聊天室</h1>
+    <h1>我的聊天室</h1>
 </div>
 <div class="main-content-agile">
     <div class="sub-main-w3">
@@ -43,7 +43,7 @@
     </div>
 </div>
 <div class="footer">
-    <p>&copy; 2018 CSCW back-end Kanarien, All Rights Reserved </p>
+    <p>&copy; 2024 All Rights Reserved </p>
 </div>
 </body>
 <script type="text/javascript">
@@ -59,7 +59,7 @@
             async: false,
             success: function (data) {
                 if (data.status == 200) {
-                    window.location.href = "chatroom";
+                    window.location.href = "myChat";
                 } else {
                     alert(data.msg);
                 }

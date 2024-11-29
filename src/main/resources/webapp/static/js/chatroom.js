@@ -1,7 +1,7 @@
 function setUserInfo() {
     $.ajax({
         type: 'POST',
-        url: 'chatroom/get_userinfo',
+        url: 'myChat/get_userinfo',
         dataType: 'json',
         async: true,
         success: function (data) {
@@ -327,7 +327,7 @@ function logout() {
 }
 
 $(".myfile").fileinput({
-    uploadUrl: "chatroom/upload",
+    uploadUrl: "myChat/upload",
     uploadAsync: true, //默认异步上传
     showUpload: true, //是否显示上传按钮,跟随文本框的那个
     showRemove: false, //显示移除按钮,跟随文本框的那个

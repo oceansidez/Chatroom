@@ -22,4 +22,15 @@ public class CustomTest extends BaseTest {
         }
         System.out.println(localHost.getHostAddress());
     }
+
+    @Test
+    public void addressTest2() {
+        InetAddress localHost = null;
+        try {
+            localHost = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(localHost.getHostAddress());
+    }
 }

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-@RequestMapping("/chatroom")
+@RequestMapping("/myChat")
 public class FileUploadController {
 
     @Autowired
